@@ -9,7 +9,9 @@ const {
   deleteGoal,
 } = require('../controllers/goalController')
 
+// const { protect } = require('../middleware/authMiddleware')
 
+// router.route('/').get(protect, getGoals).post(protect, setGoal)
 
 //router.get('/', (req, res) => res.status(200).json({message :"Get goals"}));
 router.get('/', getGoals);

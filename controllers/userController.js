@@ -72,10 +72,21 @@ const loginUser = (async (req, res) => {
 // @desc    Get user data
 // @route   GET /api/users/me
 // @access  Private
-const getMe = (async (req, res) => {
+/**
+ *const getMe = (async (req, res) => {
   res.status(200).json({message:'User connected data'})
 })
+ */
+ const getMe = (async (req, res) => {
+  const {_id, name,email}=await User.findById(req.user.id)
 
+  res.status(200).json({
+    id:_id,email,name,
+    
+    message:'User connected data'})
+})
+
+ 
 // Generate JWT
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
