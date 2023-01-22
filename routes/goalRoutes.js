@@ -9,35 +9,46 @@ const {
   deleteGoal,
 } = require('../controllers/goalController')
 
-// const { protect } = require('../middleware/authMiddleware')
+ const { protect } = require('../middleware/authMiddleware')
 
-// router.route('/').get(protect, getGoals).post(protect, setGoal)
+
+
+
+
+
+
+
+
+
+// router.route('/').get(protect, getGoals)
 
 //router.get('/', (req, res) => res.status(200).json({message :"Get goals"}));
-router.get('/', getGoals);
+//router.get('/',protect, getGoals);
 
 
 //router.post('/', (req, res) => res.status(200).json({message :"Set goals"}));
 
-router.post('/', setGoal);
+//router.post('/', setGoal);
 
 
 //router.put('/:id', (req, res) => res.status(200).json({message :`Update goals ${req.params.id} `}));
-router.put('/:id', updateGoal);
+//router.put('/:id', updateGoal);
 
 
 //router.delete('/:id', (req, res) => res.status(200).json({message :`Delete goals ${req.params.id} `}));
 
-router.delete('/:id', deleteGoal);
+//router.delete('/:id', deleteGoal);
 
 
 
 
 //alternative routes
-router.route('/').get(getGoals).post(setGoal)
-router.route('/:id').delete( deleteGoal).put(updateGoal)
+// router.route('/').get(getGoals).post(setGoal)
+// router.route('/:id').delete( deleteGoal).put(updateGoal)
 
 
+router.route('/').get(protect, getGoals).post(protect, setGoal)
+ router.route('/:id').delete(protect, deleteGoal).put(protect, updateGoal)
 module.exports = router
 
 
